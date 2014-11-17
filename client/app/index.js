@@ -1,5 +1,7 @@
 var React = require('react')
 
+require('./styles/index.scss')
+
 module.exports = React.createClass({
 
   displayName: 'App',
@@ -7,7 +9,7 @@ module.exports = React.createClass({
   render() {
     return (
       <div>
-        {this.props.activeRouteHandler()}
+          {this.props.activeRouteHandler()}
       </div>
     )
   }

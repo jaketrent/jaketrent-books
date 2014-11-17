@@ -4,7 +4,7 @@
   "description": "Books site for Jake",
   "main": "server/index.js",
   "scripts": {
-    "start": "webpack-dev-server --port 4200 --debug --devtool sourcemap --output-pathinfo",
+    "start": "webpack-dev-server --port 4200 --progress --debug --devtool sourcemap --output-pathinfo",
     "server": "node server/index",
     "dist": "webpack -p"
   },

@@ -12,13 +12,13 @@ module.exports = {
   module: {
     loaders: [
       {test: /\.js$/, loader: 'jsx-loader?harmony'},
-      {test: /\.scss/, loader:'style-loader!css-loader!less-loader'},
+      {test: /\.scss/, loader:'style-loader!css-loader!sass-loader'},
       {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}
     ]
   },
   plugins: [
     new DefinePlugin({
-      ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
     }),
     new HtmlWebpackPlugin({
       title: 'Jake\'s Books'
