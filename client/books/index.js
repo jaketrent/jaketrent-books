@@ -1,6 +1,7 @@
 
-var React = require('react')
+const React = require('react')
 
+const BooksActions = require('../books/books-actions')
 const BookDetail = require('./book-detail')
 const BooksList = require('./books-list')
 const BooksStore = require('./books-store')
@@ -11,6 +12,10 @@ module.exports = React.createClass({
 
   displayName: 'BooksIndex',
 
+  getInitialState() {
+    return this.getStateFromStores()
+  },
+
   getStateFromStores() {
     return {
       books: BooksStore.find(),
@@ -19,6 +24,7 @@ module.exports = React.createClass({
   },
 
   componentDidMount() {
+    BooksActions.fetch()
     BooksStore.addChangeListener(this._onChange)
   },
 
@@ -33,7 +39,7 @@ module.exports = React.createClass({
   render() {
     return (
       <div className="books-index">
-        <BooksList />
+        <BooksList books={this.state.books} />
         <BookDetail />
       </div>
     )

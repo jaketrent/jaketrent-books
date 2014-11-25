@@ -1,5 +1,4 @@
 
-var range = require('lodash-node/modern/arrays/range')
 var React = require('react')
 var BooksItem = require('./books-item')
 
@@ -9,8 +8,14 @@ module.exports = React.createClass({
 
   displayName: 'BooksList',
 
+  getDefaultProps() {
+    return {
+      books: []
+    }
+  },
+
   renderItems() {
-    return range(8).map(() => <BooksItem />)
+    return this.props.books.map((book) => <BooksItem book={book} />)
   },
 
   render() {

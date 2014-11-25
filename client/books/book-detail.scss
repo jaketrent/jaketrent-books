@@ -28,6 +28,8 @@ $book-detail-footer-color: lighten($book-detail-color, 30%);
 }
 .book-detail-footer {
   margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #000;
   color: $book-detail-footer-color;
   font-size: 14px;
 }
