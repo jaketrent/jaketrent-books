@@ -1,5 +1,9 @@
 $books-item-cover-width: 100px;
 
+@mixin transition($length: 500ms, $easing: ease-in-out) {
+  transition: all $length $easing;
+}
+
 .books-item {
   display: inline-block;
   width: 199px;
@@ -7,11 +11,11 @@ $books-item-cover-width: 100px;
   vertical-align: top;
 }
 .books-item-inner {
+  @include transition();
   min-height: 200px;
   padding: 30px 0;
   background: #fb9d23;
   background: linear-gradient(to bottom, #fb9d23 0%, rgba(255,197,120,0) 100%);
-  transition: all 500ms ease-in-out;
   cursor: pointer;
 
   &:hover {
@@ -19,9 +23,15 @@ $books-item-cover-width: 100px;
   }
 }
 .books-item-cover {
+  @include transition(100ms, linear);
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 100px;
+  width: $books-item-cover-width;
   border: 10px solid #fff;
+
+  .books-item-inner:hover & {
+    width: $books-item-cover-width + 10px;
+    box-shadow: 0 10px 15px rgba(0,0,0,.2);
+  }
 }
