@@ -1,0 +1,44 @@
+$book-detail-color: #2b2425;
+$book-detail-footer-color: lighten($book-detail-color, 30%);
+
+.book-detail {
+  max-width: 100%;
+  width: 600px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+  color: $book-detail-color;
+}
+.book-detail-header {
+  margin-bottom: 30px;
+}
+.book-detail-title {
+  margin: 0 0 10px 0;
+  font-size: 40px;
+  line-height: 40px;
+  font-style: italic;
+}
+.book-detail-author {
+  margin: 0;
+  font-size: 20px;
+  font-weight: lighter;
+}
+.book-detail-description {
+  font-size: 16px;
+  line-height: 28px;
+}
+.book-detail-footer {
+  margin-top: 16px;
+  color: $book-detail-footer-color;
+  font-size: 14px;
+}
+.book-detail-complete {
+  display: inline-block;
+  margin-right: 30px;
+}
+.book-detail-complete-date {
+
+}
+.book-detail-review-link {
+  display: inline-block;
+  color: $book-detail-footer-color;
+}
