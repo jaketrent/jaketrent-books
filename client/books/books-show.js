@@ -1,15 +1,15 @@
-
 const React = require('react')
+const {State} = require('react-router')
 
 const BookDetail = require('./book-detail')
 const BooksList = require('./books-list')
 const BooksStore = require('./books-store')
 
-require('./index.scss')
-
 module.exports = React.createClass({
 
-  displayName: 'BooksIndex',
+  displayName: 'BooksShow',
+
+  mixins: [ State ],
 
   getInitialState() {
     return this.getStateFromStores()
@@ -17,8 +17,7 @@ module.exports = React.createClass({
 
   getStateFromStores() {
     return {
-      books: BooksStore.find(),
-      hasMoreBooks: BooksStore.hasNextPage()
+      book: BooksStore.find({ id: this.getParams().id })
     }
   },
 
@@ -36,9 +35,7 @@ module.exports = React.createClass({
 
   render() {
     return (
-      <div className="books-index">
-        List of stuff
-      </div>
+      <BookDetail book={this.state.book} />
     )
   }
 

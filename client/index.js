@@ -1,5 +1,10 @@
-var React = require('react')
+const React = require('react')
+const Router = require('react-router')
 
-var routes = require('./config/routes')
+const BooksAction = require('./books/books-actions')
+const routes = require('./config/routes')
 
-React.render(routes, document.body)
+Router.run(routes, (Handler) => {
+  React.render(<Handler />, document.body)
+  BooksAction.transition()
+})

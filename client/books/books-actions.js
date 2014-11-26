@@ -37,10 +37,8 @@ exports.fetchError = function (errors) {
   })
 }
 
-exports.show = function (filter) {
-  ensureFindable(filter)
+exports.transition = function () {
   AppDispatcher.handleViewAction({
-    type: ActionTypes.SHOW,
-    filter: filter
+    type: ActionTypes.TRANSITION
   })
 }

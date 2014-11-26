@@ -131,6 +131,10 @@ BooksStore.dispatchToken = AppDispatcher.register(function (payload) {
 
       BooksStore.emitChange()
       break
+
+    case ActionTypes.TRANSITION:
+      BooksStore.emitChange()
+      break
   }
 })
 

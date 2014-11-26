@@ -1,4 +1,3 @@
-var Link = require('react-router').Link
 var React = require('react')
 
 require('./book-detail.scss')
@@ -7,18 +6,32 @@ module.exports = React.createClass({
 
   displayName: 'BookDetail',
 
+  getDefaultProps() {
+    return {
+      book: {}
+    }
+  },
+
   renderTitle() {
-    // TODO: handle link if exists
-    return (
-      <h1 className="book-detail-title">Quitter</h1>
-    )
+    if (this.props.book.affiliate_url)
+      return (
+        <a href="book-detail-title-link" href={this.props.book.affiliate_url} target="_blank">
+          <h1 className="book-detail-title">{this.props.book.title}</h1>
+        </a>
+      )
+    else
+      return (
+        <h1 className="book-detail-title">{this.props.book.title}</h1>
+      )
   },
 
   renderReview() {
-    // TODO: handle hiding if no link
-    return (
-      <Link className="book-detail-review-link" to="book" params={{id: '123'}}>My Review</Link>
-    )
+    if (this.props.book.review_url)
+      return (
+        <a className="book-detail-review-link" href={this.props.book.review_url}>
+          My Review
+        </a>
+      )
   },
 
   render() {
@@ -27,24 +40,19 @@ module.exports = React.createClass({
 
         <header className="book-detail-header">
           {this.renderTitle()}
-          <h2 className="book-detail-author">Jon Acuff</h2>
+          <h2 className="book-detail-author">{this.props.book.author}</h2>
         </header>
 
         <div className="book-detail-description">
-          Be calm for whoever balances, because each has been shaped with love.
-          Resurrection is the only result, the only guarantee of history.
-          Festus, bi-color valebats nunquam acquirere de azureus, pius nomen.
-          Lentils stew has to have a yellow, niffy chickpeas component.
-          Aww! Pieces o' amnesty are forever stormy.
-          Where is the united c-beam?  Suns walk with x-ray vision at the clear habitat bravelyalways, indeed!
+          {this.props.book.description}
         </div>
 
         <footer className="book-detail-footer">
           <div className="book-detail-complete">
           read&nbsp;
             <time className="book-detail-complete-date"
-              dateTime="2001-05-15 19:00">
-            23 Nov 2014
+              dateTime={this.props.book.complete_date}>
+              {this.props.book.complete_date}
             </time>
           </div>
 

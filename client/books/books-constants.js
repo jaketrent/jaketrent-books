@@ -9,7 +9,7 @@ module.exports = {
     FETCH_SUCCESS: null,
     FETCH_ERROR: null,
 
-    SHOW: null
+    TRANSITION: null
   })
 
 }

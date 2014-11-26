@@ -15,7 +15,7 @@ module.exports = React.createClass({
   },
 
   renderItems() {
-    return this.props.books.map((book) => <BooksItem book={book} />)
+    return this.props.books.map((book) => <BooksItem key={book.id} book={book} />)
   },
 
   render() {
