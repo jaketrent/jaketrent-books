@@ -1,7 +1,32 @@
 $book-detail-color: #2b2425;
 $book-detail-footer-color: lighten($book-detail-color, 30%);
 
+@-webkit-keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@mixin fade-in() {
+  -webkit-animation: fade-in 1s; /* Safari 4+ */
+  -moz-animation:    fade-in 1s; /* Fx 5+ */
+  -o-animation:      fade-in 1s; /* Opera 12+ */
+  animation:         fade-in 1s; /* IE 10+, Fx 29+ */
+}
+
 .book-detail {
+  @include fade-in();
   max-width: 100%;
   width: 600px;
   margin: 0 auto;
@@ -14,21 +39,18 @@ $book-detail-footer-color: lighten($book-detail-color, 30%);
 .book-detail-title-link {
   color: $book-detail-color;
   text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
 }
 .book-detail-title {
   margin: 0 0 10px 0;
   font-size: 40px;
-  line-height: 40px;
-  font-style: italic;
+  line-height: 1.2em;
+  font-family: 'Antic Slab', sans-serif;
 }
 .book-detail-author {
   margin: 0;
   font-size: 20px;
   font-weight: lighter;
+  font-style: italic;
 }
 .book-detail-description {
   font-size: 16px;
