@@ -4,7 +4,7 @@ const Router = require('react-router')
 const BooksAction = require('./books/books-actions')
 const routes = require('./config/routes')
 
-Router.run(routes, (Handler) => {
+Router.run(routes, (Handler, state) => {
   React.render(<Handler />, document.body)
-  BooksAction.transition()
+  BooksAction.transition(state.params)
 })
