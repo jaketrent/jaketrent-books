@@ -1,5 +1,7 @@
 var React = require('react')
 
+var FormattedDate = require('../common/formatted-date')
+
 require('./book-detail.scss')
 
 module.exports = React.createClass({
@@ -49,10 +51,10 @@ module.exports = React.createClass({
 
         <footer className="book-detail-footer">
           <div className="book-detail-complete">
-          read&nbsp;
+          completed&nbsp;
             <time className="book-detail-complete-date"
               dateTime={this.props.book.complete_date}>
-              {this.props.book.complete_date}
+              <FormattedDate date={this.props.book.complete_date} />
             </time>
           </div>
 
