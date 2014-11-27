@@ -1,15 +1,17 @@
-
 const React = require('react')
+const {RouteHandler} = require('react-router')
 
-const BookDetail = require('./book-detail')
+const BooksActions = require('../books/books-actions')
 const BooksList = require('./books-list')
 const BooksStore = require('./books-store')
-
-require('./index.scss')
 
 module.exports = React.createClass({
 
   displayName: 'BooksIndex',
+
+  componentDidMount() {
+    BooksActions.fetch()
+  },
 
   getInitialState() {
     return this.getStateFromStores()
@@ -23,6 +25,7 @@ module.exports = React.createClass({
   },
 
   componentDidMount() {
+    BooksActions.fetch()
     BooksStore.addChangeListener(this._onChange)
   },
 
@@ -36,8 +39,9 @@ module.exports = React.createClass({
 
   render() {
     return (
-      <div className="books-index">
-        List of stuff
+      <div>
+        <BooksList books={this.state.books} showLoadMore={this.state.hasMoreBooks} />
+        <RouteHandler />
       </div>
     )
   }
