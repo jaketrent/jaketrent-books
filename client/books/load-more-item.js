@@ -16,13 +16,11 @@ module.exports = React.createClass({
   render() {
     return (
       <li className="load-more-item">
-        <div className="load-more-item-inner">
-          <a className="load-more-item-link" onClick={this.handleClickButton}>
-            <div className="load-more-item-dot"></div>
-            <div className="load-more-item-dot"></div>
-            <div className="load-more-item-dot"></div>
-          </a>
-        </div>
+        <a className="load-more-item-link" onClick={this.handleClickButton}>
+          <div className="load-more-item-dot"></div>
+          <div className="load-more-item-dot"></div>
+          <div className="load-more-item-dot"></div>
+        </a>
       </li>
     )
   }

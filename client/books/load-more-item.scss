@@ -4,22 +4,13 @@ $load-more-color: #000;
 
 .load-more-item {
   display: inline-block;
+  height: 260px;
   width: 199px;
   right: 1px;
   vertical-align: top;
 }
-.load-more-item-inner {
-  @include transition();
-  height: 260px;
-  background: #fb9d23;
-  background: linear-gradient(to bottom, #fb9d23 0%, rgba(255,197,120,0) 100%);
-  cursor: pointer;
-
-  &:hover {
-    height: 290px;
-  }
-}
 .load-more-item-link {
+  @include transition();
   display: block;
   height: 260px;
   line-height: 200px;
@@ -27,6 +18,13 @@ $load-more-color: #000;
   font-size: 14px;
   font-family: sans-serif;
   color: $load-more-color;
+  background: #fb9d23;
+  background: linear-gradient(to bottom, #fb9d23 0%, rgba(255,197,120,0) 100%);
+  cursor: pointer;
+
+  &:hover {
+    height: 290px;
+  }
 }
 .load-more-item-dot {
   @include transition(200ms, linear);
@@ -37,7 +35,7 @@ $load-more-color: #000;
   border-radius: 50%;
   background: $load-more-color;
 
-  .load-more-item-inner:hover & {
+  .load-more-item-link:hover & {
     margin-right: 5px;
   }
 
