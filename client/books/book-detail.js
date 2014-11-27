@@ -15,7 +15,7 @@ module.exports = React.createClass({
   renderTitle() {
     if (this.props.book.affiliate_url)
       return (
-        <a href="book-detail-title-link" href={this.props.book.affiliate_url} target="_blank">
+        <a className="book-detail-title-link" href={this.props.book.affiliate_url} target="_blank">
           <h1 className="book-detail-title">{this.props.book.title}</h1>
         </a>
       )

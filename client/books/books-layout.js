@@ -40,7 +40,7 @@ module.exports = React.createClass({
   render() {
     return (
       <div>
-        <BooksList books={this.state.books} />
+        <BooksList books={this.state.books} showLoadMore={this.state.hasMoreBooks} />
         <RouteHandler />
       </div>
     )

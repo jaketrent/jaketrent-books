@@ -1,8 +1,6 @@
 $books-item-cover-width: 100px;
 
-@mixin transition($length: 500ms, $easing: ease-in-out) {
-  transition: all $length $easing;
-}
+@import "../app/styles/mixins";
 
 .books-item {
   display: inline-block;

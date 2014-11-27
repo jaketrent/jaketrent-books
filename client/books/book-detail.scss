@@ -11,6 +11,14 @@ $book-detail-footer-color: lighten($book-detail-color, 30%);
 .book-detail-header {
   margin-bottom: 30px;
 }
+.book-detail-title-link {
+  color: $book-detail-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
 .book-detail-title {
   margin: 0 0 10px 0;
   font-size: 40px;
