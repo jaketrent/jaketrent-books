@@ -14,6 +14,10 @@ module.exports = React.createClass({
     }
   },
 
+  isBookLoaded() {
+    return this.props.book.title
+  },
+
   renderTitle() {
     if (this.props.book.affiliate_url)
       return (
@@ -37,32 +41,35 @@ module.exports = React.createClass({
   },
 
   render() {
-    return (
-      <article className="book-detail">
+    if (this.isBookLoaded())
+      return (
+        <article className="book-detail">
 
-        <header className="book-detail-header">
-          {this.renderTitle()}
-          <h2 className="book-detail-author">{this.props.book.author}</h2>
-        </header>
+          <header className="book-detail-header">
+            {this.renderTitle()}
+            <h2 className="book-detail-author">{this.props.book.author}</h2>
+          </header>
 
-        <div className="book-detail-description">
-          {this.props.book.description}
-        </div>
-
-        <footer className="book-detail-footer">
-          <div className="book-detail-complete">
-          completed&nbsp;
-            <time className="book-detail-complete-date"
-              dateTime={this.props.book.complete_date}>
-              <FormattedDate date={this.props.book.complete_date} />
-            </time>
+          <div className="book-detail-description">
+            {this.props.book.description}
           </div>
 
-          {this.renderReview()}
-        </footer>
+          <footer className="book-detail-footer">
+            <div className="book-detail-complete">
+              completed&nbsp;
+              <time className="book-detail-complete-date"
+                dateTime={this.props.book.complete_date}>
+                <FormattedDate date={this.props.book.complete_date} />
+              </time>
+            </div>
 
-      </article>
-    )
+            {this.renderReview()}
+          </footer>
+
+        </article>
+      )
+    else
+      return null
   }
 
 })

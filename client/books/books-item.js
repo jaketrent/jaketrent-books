@@ -2,8 +2,6 @@
 var {Link} = require('react-router')
 var React = require('react')
 
-const BooksActions = require('./books-actions')
-
 require('./books-item.scss')
 
 module.exports = React.createClass({
