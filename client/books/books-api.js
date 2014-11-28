@@ -16,7 +16,6 @@ function requestBooks(url, filter, done) {
   request
     .get(url)
     .set('Content-Type', 'application/json')
-    .withCredentials()
     .end(function (err, res) {
       if (err || res.body.errors) return done(err || res.body.errors)
 

@@ -42,14 +42,14 @@ function uncache(book) {
 
 // TODO: use just pages or just urls
 function getUrl() {
-  if (BooksStore.hasNextPage())
+  if (_latestLinkHeader && _latestLinkHeader.next)
     return _latestLinkHeader.next.url
 }
 
 function getPage() {
-  if (BooksStore.hasNextPage())
+  if (_latestLinkHeader && _latestLinkHeader.next)
     return _latestLinkHeader.next.page
-  else if (!_latestLinkHeader)
+  else
     return 1
 }
 
@@ -94,10 +94,9 @@ var BooksStore = merge(EventEmitter.prototype, {
   },
 
   hasNextPage: function () {
-    return _latestLinkHeader
-      && _latestLinkHeader.next
-      && _latestLinkHeader.last
-      && (_latestLinkHeader.next.page !== _latestLinkHeader.last.page)
+    return !!_latestLinkHeader
+      && !!_latestLinkHeader.next
+      && _latestLinkHeader.next.page > 1
   },
 
   emitChange: function () {
@@ -119,7 +118,8 @@ BooksStore.dispatchToken = AppDispatcher.register(function (payload) {
   switch(action.type) {
 
     case ActionTypes.FETCH:
-      BooksApi.fetch(getUrl(), action.filter, getPage())
+      if (BooksStore.hasNextPage())
+        BooksApi.fetch(getUrl(), action.filter, getPage())
       break
 
     case ActionTypes.FETCH_SUCCESS:
