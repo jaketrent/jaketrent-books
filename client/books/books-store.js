@@ -94,9 +94,12 @@ var BooksStore = merge(EventEmitter.prototype, {
   },
 
   hasNextPage: function () {
-    return !!_latestLinkHeader
+    var hasNoHeaderMeaningNoInitialRequest = !_latestLinkHeader
+    var hasHeaderThatIndicatesNextPageAboveOne = !!_latestLinkHeader
       && !!_latestLinkHeader.next
       && _latestLinkHeader.next.page > 1
+    return hasNoHeaderMeaningNoInitialRequest ||
+      hasHeaderThatIndicatesNextPageAboveOne
   },
 
   emitChange: function () {
