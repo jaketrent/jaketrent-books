@@ -21,7 +21,13 @@ module.exports = {
       NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
     }),
     new HtmlWebpackPlugin({
-      title: 'Jake\'s Books'
+      title: 'Jake\'s Books',
+      template: 'node_modules/html-webpack-template/index.html',
+      mobile: true,
+      googleAnalytics: {
+        trackingId: 'UA-16224416-4',
+        pageViewOnLoad: true
+      }
     })
   ],
   resolve: {
