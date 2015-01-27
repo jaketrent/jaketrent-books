@@ -32,7 +32,7 @@ exports.fetch = function (url, filter, page) {
     if (res.headers && res.headers.link)
       linkHeader = parseLinkHeader(res.headers.link)
 
-    BooksActions.fetchSuccess(res.body.books, filter, page, linkHeader)
+    setTimeout(() => BooksActions.fetchSuccess(res.body.books, filter, page, linkHeader), 1500)
   }
 
   requestBooks(url, filter, requestBooksCallback)
