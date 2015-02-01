@@ -1,5 +1,7 @@
+$book-detail-width: 600px;
 $book-detail-color: #2b2425;
 $book-detail-footer-color: lighten($book-detail-color, 30%);
+$iphone-6plus-width: 414px;
 
 @-webkit-keyframes fade-in {
   0%   { opacity: 0; }
@@ -28,7 +30,7 @@ $book-detail-footer-color: lighten($book-detail-color, 30%);
 .book-detail {
   @include fade-in();
   max-width: 100%;
-  width: 600px;
+  width: $book-detail-width;
   margin: 0 auto;
   padding-bottom: 50px;
   color: $book-detail-color;
@@ -73,4 +75,19 @@ $book-detail-footer-color: lighten($book-detail-color, 30%);
 .book-detail-review-link {
   display: inline-block;
   color: $book-detail-footer-color;
+}
+
+@media screen and (max-width: $book-detail-width + 40px) {
+  .book-detail {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media screen and (max-width: $iphone-6plus-width) {
+  .book-detail-title {
+    font-size: 30px;
+  }
+  .book-detail-author {
+    font-size: 14px;
+  }
 }
