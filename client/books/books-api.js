@@ -1,39 +1,36 @@
 'use strict'
 
 var parseLinkHeader = require('parse-link-header')
-var request = require('superagent')
+var axios = require('axios')
 
 var api = require('../common/api')
 var BooksActions = require('./books-actions')
 
-function requestBooks(url, filter, done) {
+exports.fetch = async function (url, filter, page) {
   if (!url)
     url = api.getHostBaseUrl() + '/books'
 
   if (filter && filter.id)
     url += '/' + filter.id
 
-  request
-    .get(url)
-    .set('Content-Type', 'application/json')
-    .end(function (err, res) {
-      if (err || res.body.errors) return done(err || res.body.errors)
+  try {
+    var res = await axios.get(url, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
 
-      done(null, res)
-    })
-}
-
-exports.fetch = function (url, filter, page) {
-  function requestBooksCallback(err, res) {
-    if (err) return BooksActions.fetchError(err || res.body.errors)
+    if (res.data.errors)
+      return BooksActions.fetchError(res.data.errors)
 
     var linkHeader
-
     if (res.headers && res.headers.link)
       linkHeader = parseLinkHeader(res.headers.link)
 
-    setTimeout(() => BooksActions.fetchSuccess(res.body.books, filter, page, linkHeader), 1500)
+    setTimeout(() =>
+      BooksActions.fetchSuccess(res.data.books, filter, page, linkHeader)
+    , 1200)
+  } catch (err) {
+    BooksActions.fetchError(err)
   }
-
-  requestBooks(url, filter, requestBooksCallback)
 }

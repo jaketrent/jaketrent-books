@@ -12,10 +12,6 @@ module.exports = React.createClass({
 
   displayName: 'BooksIndex',
 
-  componentDidMount() {
-    BooksActions.fetch()
-  },
-
   getInitialState() {
     return this.getStateFromStores()
   },
