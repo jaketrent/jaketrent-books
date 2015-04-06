@@ -9,6 +9,18 @@ function getStream(path) {
   return fs.createReadStream(path)
 }
 
+exports.isFileExists = (key, done) => {
+  var params = {
+    Bucket: BUCKET_NAME,
+    Key: key
+  };
+  s3.headObject(params, (err) => {
+    if (err) return done(err)
+
+    done(null, true)
+  });
+}
+
 exports.upload = (key, path, done) => {
   console.log(`Uploading asset ${path} ...`)
   var params = {
@@ -18,4 +30,17 @@ exports.upload = (key, path, done) => {
     Body: getStream(path)
   }
   s3.upload(params, done)
+}
+
+exports.uploadIfNew = (key, path, done) => {
+  exports.isFileExists(key, (accessErr, exists) => {
+    if (accessErr) return done(accessErr)
+
+    if (exists) {
+      console.log(`Asset already exists on s3 ${path} .  Skipping.`)
+      done()
+    } else {
+      exports.upload(key, path, done)
+    }
+  })
 }

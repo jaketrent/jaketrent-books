@@ -60,6 +60,10 @@ function getLastPage() {
 
 var BooksStore = merge(EventEmitter.prototype, {
 
+  init(books) {
+    cache(books)
+  },
+
   find: function (filter) {
     var records = _books
 

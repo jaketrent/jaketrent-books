@@ -1,6 +1,7 @@
 
+var webpack = require('webpack')
 var OccurenceOrderPlugin = webpack.optimize.OccurenceOrderPlugin
-var DefinePlugin = require('webpack').DefinePlugin
+var DefinePlugin = webpack.DefinePlugin
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {

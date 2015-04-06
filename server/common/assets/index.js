@@ -1,14 +1,15 @@
 var s3 = require('./s3')
 var webpack = require('./webpack')
 
-var assetHost = process.env.ASSET_HOST || 'http://localhost:4200'
+var assetHost = process.env.ASSET_HOST || 'http://localhost:3000/assets'
 var _entryFileName = ''
 
 exports.getEntryScriptUrl = () => {
   return `${assetHost}/${_entryFileName}`
 }
 
-exports.upload = (done) => {
+exports.init = (done) => {
+  // TODO: if not uploading, use local webpack-dev-server
   webpack.compile((compileErr, asset) => {
     if (compileErr) {
       console.log(compileErr)
@@ -16,13 +17,17 @@ exports.upload = (done) => {
     }
 
     _entryFileName = asset.key
-    s3.upload(asset.key, asset.path, (uploadErr, data) => {
+
+    if (!process.env.UPLOAD_ASSETS)
+      return done()
+
+    s3.uploadIfNew(asset.key, asset.path, (uploadErr) => {
       if (uploadErr) {
         console.log(uploadErr)
         throw new Error('Asset upload error', uploadErr)
       }
 
-      done(null, data)
+      done()
     })
   })
 }
