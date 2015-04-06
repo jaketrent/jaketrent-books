@@ -2,8 +2,6 @@ var React = require('react')
 
 var FormattedDate = require('../common/formatted-date')
 
-require('./book-detail.scss')
-
 module.exports = React.createClass({
 
   displayName: 'BookDetail',

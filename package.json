@@ -4,7 +4,8 @@
   "description": "Books site for Jake",
   "main": "server/index.js",
   "scripts": {
-    "start": "webpack-dev-server --port 4200 --progress --debug --devtool sourcemap --output-pathinfo",
+    "start": "node-dev server",
+    "start-client": "webpack-dev-server --port 4200 --progress --debug --devtool sourcemap --output-pathinfo",
     "server": "node server/index",
     "dist": "webpack -p"
   },
@@ -37,6 +38,7 @@
     "webpack-dev-server": "^1.6.5"
   },
   "dependencies": {
+    "ejs": "^2.3.1",
     "express": "^4.10.2",
     "gzippo": "^0.2.0"
   }

@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h1>Such html</h1>
+  <%- html %>
+  <%if (initialState) { %>
+    <script type="text/javascript">
+      window.initialState = <%- initialState %>
+    </script>
+  <% } %>
+</body>
+</html>

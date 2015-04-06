@@ -3,8 +3,6 @@ var React = require('react')
 
 const BooksActions = require('./books-actions')
 
-require('./load-more-item.scss')
-
 module.exports = React.createClass({
 
   displayName: 'LoadMoreItem',

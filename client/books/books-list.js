@@ -4,8 +4,6 @@ var React = require('react')
 var BooksItem = require('./books-item')
 var LoadMoreItem = require('./load-more-item')
 
-require('./books-list.scss')
-
 module.exports = React.createClass({
 
   displayName: 'BooksList',

@@ -5,9 +5,6 @@ const BooksActions = require('../books/books-actions')
 const BooksList = require('./books-list')
 const BooksStore = require('./books-store')
 
-require('./index.scss')
-const LogoImage = require('../app/images/logo.png')
-
 module.exports = React.createClass({
 
   displayName: 'BooksIndex',
@@ -40,10 +37,6 @@ module.exports = React.createClass({
     return !this.state.books || this.state.books.length < 1
   },
 
-  renderLoading() {
-    return <img className="books-loading-image" src={LogoImage} />
-  },
-
   renderPage() {
     return (
       <div>
@@ -54,10 +47,7 @@ module.exports = React.createClass({
   },
 
   render() {
-    if (this.isLoading())
-      return this.renderLoading()
-    else
-      return this.renderPage()
+    return this.renderPage()
   }
 
 })
