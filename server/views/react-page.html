@@ -6,11 +6,12 @@
 </head>
 <body>
   <h1>Such html</h1>
-  <%- html %>
+  <div id="app"><%- html %></div>
   <%if (initialState) { %>
     <script type="text/javascript">
       window.initialState = <%- initialState %>
     </script>
   <% } %>
+  <script type="text/javascript" src="<%= entryScriptUrl %>"></script>
 </body>
 </html>

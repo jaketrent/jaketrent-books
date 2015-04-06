@@ -1,6 +1,7 @@
 var React = require('react')
 var Router = require('react-router')
 
+var assets = require('./assets')
 var clientRoutes = require('../../client/config/routes')
 
 exports.render = function (req, res, props) {
@@ -13,6 +14,7 @@ exports.render = function (req, res, props) {
     var html = React.renderToString(Handler)
     return res.render('react-page', {
       html,
+      entryScriptUrl: assets.getEntryScriptUrl(),
       initialState: JSON.stringify(props)
     })
   })

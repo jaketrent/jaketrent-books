@@ -9,6 +9,6 @@ if (window.initalState) {
 }
 
 Router.run(routes, (Handler, state) => {
-  React.render(<Handler />, document.body)
+  React.render(<Handler />, document.getElementById('app'))
   BooksAction.transition(state.params)
 })
