@@ -1,4 +1,5 @@
 
+var OccurenceOrderPlugin = webpack.optimize.OccurenceOrderPlugin
 var DefinePlugin = require('webpack').DefinePlugin
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
@@ -23,6 +24,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new OccurenceOrderPlugin(true),
     new DefinePlugin({
       NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
     }),
