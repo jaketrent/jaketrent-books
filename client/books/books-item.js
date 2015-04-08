@@ -2,6 +2,8 @@
 var {Link} = require('react-router')
 var React = require('react')
 
+try { require('./books-item.scss') } catch (e) {}
+
 module.exports = React.createClass({
 
   displayName: 'BooksItem',

@@ -1,7 +1,8 @@
 var React = require('react')
 
 var FormattedDate = require('../common/formatted-date')
-var style = require('./book-detail-style')
+
+try { require('./book-detail.scss') } catch (e) {}
 
 module.exports = React.createClass({
 
@@ -20,20 +21,20 @@ module.exports = React.createClass({
   renderTitle() {
     if (this.props.book.affiliate_url)
       return (
-        <a style={style.titleLink} href={this.props.book.affiliate_url} target="_blank">
-          <h1 style={style.title}>{this.props.book.title}</h1>
+        <a className="book-detail-title-link" href={this.props.book.affiliate_url} target="_blank">
+          <h1 className="book-detail-title">{this.props.book.title}</h1>
         </a>
       )
     else
       return (
-        <h1 style={style.title}>{this.props.book.title}</h1>
+        <h1 className="book-detail-title">{this.props.book.title}</h1>
       )
   },
 
   renderReview() {
     if (this.props.book.review_url)
       return (
-        <a style={style.reviewLink} href={this.props.book.review_url}>
+        <a className="book-detail-review-link" href={this.props.book.review_url}>
           My Review
         </a>
       )
@@ -42,21 +43,22 @@ module.exports = React.createClass({
   render() {
     if (this.isBookLoaded())
       return (
-        <article style={style.root}>
+        <article className="book-detail">
 
-          <header style={style.header}>
+          <header className="book-detail-header">
             {this.renderTitle()}
-            <h2 style={style.author}>{this.props.book.author}</h2>
+            <h2 className="book-detail-author">{this.props.book.author}</h2>
           </header>
 
-          <div style={style.description}>
+          <div className="book-detail-description">
             {this.props.book.description}
           </div>
 
-          <footer style={style.footer}>
-            <div style={style.complete}>
+          <footer className="book-detail-footer">
+            <div className="book-detail-complete">
               completed&nbsp;
-              <time dateTime={this.props.book.complete_date}>
+              <time className="book-detail-complete-date"
+                dateTime={this.props.book.complete_date}>
                 <FormattedDate date={this.props.book.complete_date} />
               </time>
             </div>
