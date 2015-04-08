@@ -1,9 +1,9 @@
 'use strict'
 
+var assign = require('react/lib/Object.assign')
 var EventEmitter = require('events').EventEmitter
 var find = require('lodash-node/modern/collections/find')
 var findIndex = require('lodash-node/modern/arrays/findIndex')
-var merge = require('react/lib/merge')
 var uniq = require('lodash-node/modern/arrays/uniq')
 
 var AppConstants = require('../common/app-constants')
@@ -58,7 +58,7 @@ function getLastPage() {
     return _latestLinkHeader.last.page
 }
 
-var BooksStore = merge(EventEmitter.prototype, {
+var BooksStore = assign({}, EventEmitter.prototype, {
 
   init(books) {
     cache(books)

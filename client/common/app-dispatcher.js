@@ -1,12 +1,13 @@
 'use strict'
 
-var AppConstants = require('./app-constants')
+var assign = require('react/lib/Object.assign')
 var Dispatcher = require('flux').Dispatcher
-var copyProperties = require('react/lib/copyProperties')
+
+var AppConstants = require('./app-constants')
 
 var PayloadSources = AppConstants.PayloadSources
 
-module.exports = copyProperties(new Dispatcher(), {
+module.exports = assign(new Dispatcher(), {
 
   handleServerAction: function(action) {
     var payload = {

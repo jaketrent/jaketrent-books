@@ -1,5 +1,4 @@
 const React = require('react')
-const {State} = require('react-router')
 
 const BookDetail = require('./book-detail')
 const BooksList = require('./books-list')
@@ -9,7 +8,9 @@ module.exports = React.createClass({
 
   displayName: 'BooksShow',
 
-  mixins: [ State ],
+  contextTypes: {
+    router: React.PropTypes.func
+  },
 
   getInitialState() {
     return this.getStateFromStores()
@@ -17,7 +18,7 @@ module.exports = React.createClass({
 
   getStateFromStores() {
     return {
-      book: BooksStore.find({ id: this.getParams().id })
+      book: BooksStore.find({ id: this.context.router.getCurrentParams().id })
     }
   },
 
