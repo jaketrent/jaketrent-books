@@ -1,7 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 
-var config = require('../../../webpack.config')
+var config = require('./config-loader').load()
 
 var OUTPUT_NAME = 'main'
 

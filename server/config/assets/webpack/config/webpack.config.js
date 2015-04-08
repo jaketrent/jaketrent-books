@@ -1,8 +1,7 @@
+var path = require('path')
 
 var webpack = require('webpack')
 var OccurenceOrderPlugin = webpack.optimize.OccurenceOrderPlugin
-var DefinePlugin = webpack.DefinePlugin
-var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -26,19 +25,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new OccurenceOrderPlugin(true),
-    new DefinePlugin({
-      NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
-    }),
-    new HtmlWebpackPlugin({
-      title: 'Jake\'s Books',
-      template: 'node_modules/html-webpack-template/index.html',
-      mobile: true,
-      googleAnalytics: {
-        trackingId: 'UA-16224416-4',
-        pageViewOnLoad: true
-      }
-    })
+    new OccurenceOrderPlugin(true)
   ],
   resolve: {
     extensions: ['', '.js', '.json']

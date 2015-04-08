@@ -34,9 +34,9 @@ exports.upload = (key, path, done) => {
 
 exports.uploadIfNew = (key, path, done) => {
   exports.isFileExists(key, (accessErr, exists) => {
-    if (accessErr) return done(accessErr)
+    // skip accessErr check -- if err, then 404 (doesn't exist)
 
-    if (exists) {
+    if (!!exists) {
       console.log(`Asset already exists on s3 ${path} .  Skipping.`)
       done()
     } else {

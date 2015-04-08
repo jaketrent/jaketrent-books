@@ -1,7 +1,7 @@
 var React = require('react')
 var Router = require('react-router')
 
-var assets = require('./assets')
+var assets = require('../config/assets')
 var clientRoutes = require('../../client/config/routes')
 
 exports.render = function (req, res, props) {
