@@ -2,7 +2,7 @@ var s3 = require('./s3')
 var webpack = require('./webpack')
 
 var assetHost = process.env.ASSET_HOST || 'http://localhost:3000/assets'
-var _entryFileName = `main.${process.env.NODE_ENV}.js`
+var _entryFileName = `main.${(process.env.NODE_ENV || 'development')}.js`
 
 function deploy(done) {
   webpack.compile((compileErr, asset) => {
