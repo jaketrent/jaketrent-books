@@ -9,6 +9,10 @@ module.exports = React.createClass({
 
   displayName: 'BooksIndex',
 
+  propTypes: {
+    books: React.PropTypes.array
+  },
+
   getInitialState() {
     return this.getStateFromStores()
   },
@@ -20,8 +24,15 @@ module.exports = React.createClass({
     }
   },
 
+  componentWillMount() {
+    if (this.props.books) {
+      this.setState({ books: this.props.books })
+    }
+  },
+
   componentDidMount() {
-    BooksActions.fetch()
+    if (!this.props.books)
+      BooksActions.fetch()
     BooksStore.addChangeListener(this._onChange)
   },
 
@@ -41,7 +52,7 @@ module.exports = React.createClass({
     return (
       <div>
         <BooksList books={this.state.books} showLoadMore={this.state.hasMoreBooks} />
-        <RouteHandler />
+        <RouteHandler {...this.props} />
       </div>
     )
   },

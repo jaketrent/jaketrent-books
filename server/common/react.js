@@ -10,9 +10,8 @@ exports.render = function (req, res, props) {
     routes: clientRoutes
   })
   router.run(function (Handler) {
-    var Handler = React.createElement(Handler, props)
-    var html = React.renderToString(Handler)
-    return res.render('react-page', {
+    var html = React.renderToString(<Handler {...props} />)
+    return res.render('index', {
       html,
       entryScriptUrl: assets.getEntryScriptUrl(),
       initialState: JSON.stringify(props)
