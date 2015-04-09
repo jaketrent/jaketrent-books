@@ -12,6 +12,10 @@ module.exports = React.createClass({
     router: React.PropTypes.func
   },
 
+  propTypes: {
+    book: React.PropTypes.object
+  },
+
   getInitialState() {
     return this.getStateFromStores()
   },
@@ -19,6 +23,12 @@ module.exports = React.createClass({
   getStateFromStores() {
     return {
       book: BooksStore.find({ id: this.context.router.getCurrentParams().id })
+    }
+  },
+
+  componentWillMount() {
+    if (this.props.book) {
+      this.setState({ book: this.props.book })
     }
   },
 
