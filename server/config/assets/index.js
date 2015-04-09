@@ -1,7 +1,8 @@
 var s3 = require('./s3')
 var webpack = require('./webpack')
 
-var assetHost = process.env.ASSET_HOST || 'http://localhost:3000/assets'
+var port = process.env.PORT || 3000 // TODO: move to config
+var assetHost = process.env.ASSET_HOST || `http://localhost:${port}/assets`
 var _entryFileName = `main.${(process.env.NODE_ENV || 'development')}.js`
 
 function deploy(done) {
