@@ -25,12 +25,14 @@ function cache(books, page) {
   if (!page)
     page = 1
 
-  _books = uniq(_books.concat(books.map(function (book) {
+  _books = uniq(_books.concat(books.map((book) => {
     return {
       book: book,
       page: page
     }
-  })))
+  })), (record) => {
+    return record.book.id
+  })
 }
 
 function uncache(book) {
