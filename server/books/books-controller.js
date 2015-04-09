@@ -8,7 +8,7 @@ exports.index = function (req, res) {
 }
 
 exports.detail = function (req, res) {
-  BooksApi.fetch(null, { id: req.params.id }, null, (book) => {
-    return react.render(req, res, { book: book })
+  BooksApi.fetch(null, { id: req.params.id }, null, (books) => {
+    return react.render(req, res, { books })
   })
 }

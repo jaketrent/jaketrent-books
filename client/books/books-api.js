@@ -19,6 +19,13 @@ function request(url, filter) {
   })
 }
 
+// TODO: consider adjusting the api serializer
+function anArray(data) {
+  if (Array.isArray(data)) return data
+  if (data) return [ data ]
+  return []
+}
+
 // TODO: hashify input
 // TODO: convert success and error separate actions to a single action, node-style params
 exports.fetch = async function (url, filter, page, done) {
@@ -35,7 +42,7 @@ exports.fetch = async function (url, filter, page, done) {
       linkHeader = parseLinkHeader(res.headers.link)
 
     // TODO: handle null first
-    done(res.data.books, filter, page, linkHeader)
+    done(anArray(res.data.books), filter, page, linkHeader)
   } catch (e) {
     done(e)
   }

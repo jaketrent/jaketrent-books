@@ -13,7 +13,7 @@ module.exports = React.createClass({
   },
 
   propTypes: {
-    book: React.PropTypes.object
+    books: React.PropTypes.array
   },
 
   getInitialState() {
@@ -27,8 +27,8 @@ module.exports = React.createClass({
   },
 
   componentWillMount() {
-    if (this.props.book) {
-      this.setState({ book: this.props.book })
+    if (Array.isArray(this.props.books) && this.props.books.length > 0) {
+      this.setState({ book: this.props.books[0] })
     }
   },
 

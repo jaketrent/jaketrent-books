@@ -8,14 +8,8 @@ module.exports = React.createClass({
 
   displayName: 'BookDetail',
 
-  getDefaultProps() {
-    return {
-      book: {}
-    }
-  },
-
-  isBookLoaded() {
-    return this.props.book.title
+  propTypes: {
+    book: React.PropTypes.object.isRequired
   },
 
   renderTitle() {
@@ -41,35 +35,32 @@ module.exports = React.createClass({
   },
 
   render() {
-    if (this.isBookLoaded())
-      return (
-        <article className="book-detail">
+    return (
+      <article className="book-detail">
 
-          <header className="book-detail-header">
-            {this.renderTitle()}
-            <h2 className="book-detail-author">{this.props.book.author}</h2>
-          </header>
+        <header className="book-detail-header">
+          {this.renderTitle()}
+          <h2 className="book-detail-author">{this.props.book.author}</h2>
+        </header>
 
-          <div className="book-detail-description">
-            {this.props.book.description}
+        <div className="book-detail-description">
+          {this.props.book.description}
+        </div>
+
+        <footer className="book-detail-footer">
+          <div className="book-detail-complete">
+            completed&nbsp;
+            <time className="book-detail-complete-date"
+              dateTime={this.props.book.complete_date}>
+              <FormattedDate date={this.props.book.complete_date} />
+            </time>
           </div>
 
-          <footer className="book-detail-footer">
-            <div className="book-detail-complete">
-              completed&nbsp;
-              <time className="book-detail-complete-date"
-                dateTime={this.props.book.complete_date}>
-                <FormattedDate date={this.props.book.complete_date} />
-              </time>
-            </div>
+          {this.renderReview()}
+        </footer>
 
-            {this.renderReview()}
-          </footer>
-
-        </article>
-      )
-    else
-      return null
+      </article>
+    )
   }
 
 })
