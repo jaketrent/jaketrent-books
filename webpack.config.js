@@ -1,0 +1,1 @@
+./server/config/assets/webpack/config/development.config.js
