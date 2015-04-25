@@ -8,7 +8,6 @@ var uniq = require('lodash-node/modern/arrays/uniq')
 
 var AppConstants = require('../common/app-constants')
 var AppDispatcher = require('../common/app-dispatcher')
-var BooksApi = require('./books-api')
 var BooksConstants = require('./books-constants')
 
 var ActionTypes = BooksConstants.ActionTypes
@@ -128,11 +127,6 @@ BooksStore.dispatchToken = AppDispatcher.register(function (payload) {
     case ActionTypes.FETCH_SUCCESS:
       _latestLinkHeader = action.linkHeader
       cache(action.models, action.page)
-
-      if (!_latestLinkHeader && action.filter)
-        // TODO: flux refactor - store doesn't talk to api helper
-        BooksApi.fetch(BooksStore.getUrl(), null, BooksStore.getPage())
-
       BooksStore.emitChange()
       break
 
