@@ -14,10 +14,7 @@ function ensureFindable(filter) {
 }
 
 exports.fetch = function (filter) {
-  AppDispatcher.handleViewAction({
-    type: ActionTypes.FETCH,
-    filter: filter
-  })
+  BooksApi.fetch(BooksStore.getUrl(), filter, BooksStore.getPage())
 }
 
 exports.fetchSuccess = function (models, filter, page, linkHeader) {

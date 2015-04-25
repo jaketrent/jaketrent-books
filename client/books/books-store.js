@@ -42,19 +42,6 @@ function uncache(book) {
   _books.splice(indx, 1)
 }
 
-// TODO: use just pages or just urls
-function getUrl() {
-  if (_latestLinkHeader && _latestLinkHeader.next)
-    return _latestLinkHeader.next.url
-}
-
-function getPage() {
-  if (_latestLinkHeader && _latestLinkHeader.next)
-    return _latestLinkHeader.next.page
-  else
-    return 1
-}
-
 function getLastPage() {
   if (_latestLinkHeader && _latestLinkHeader.last)
     return _latestLinkHeader.last.page
@@ -99,6 +86,19 @@ var BooksStore = assign({}, EventEmitter.prototype, {
     }
   },
 
+  // TODO: use just pages or just urls
+  getUrl: function () {
+    if (_latestLinkHeader && _latestLinkHeader.next)
+      return _latestLinkHeader.next.url
+  },
+
+  getPage: function () {
+    if (_latestLinkHeader && _latestLinkHeader.next)
+      return _latestLinkHeader.next.page
+    else
+      return 1
+  },
+
   hasNextPage: function () {
     var hasNoHeaderMeaningNoInitialRequest = !_latestLinkHeader
     var hasHeaderThatIndicatesNextPageAboveOne = !!_latestLinkHeader
@@ -125,18 +125,13 @@ BooksStore.dispatchToken = AppDispatcher.register(function (payload) {
   var action = payload.action
 
   switch(action.type) {
-
-    case ActionTypes.FETCH:
-      if (BooksStore.hasNextPage())
-        BooksApi.fetch(getUrl(), action.filter, getPage())
-      break
-
     case ActionTypes.FETCH_SUCCESS:
       _latestLinkHeader = action.linkHeader
       cache(action.models, action.page)
 
       if (!_latestLinkHeader && action.filter)
-        BooksApi.fetch(getUrl(), null, getPage())
+        // TODO: flux refactor - store doesn't talk to api helper
+        BooksApi.fetch(BooksStore.getUrl(), null, BooksStore.getPage())
 
       BooksStore.emitChange()
       break
