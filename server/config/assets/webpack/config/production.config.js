@@ -11,9 +11,13 @@ module.exports = assign({}, require('./webpack.config.js'), {
   },
   //  TODO: make more DRY - just filename, not all of plugin def
   plugins: [
+    new ExtractTextPlugin('[name].[hash].css'),
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
-    new ExtractTextPlugin('[name].[hash].css')
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
   ]
 })

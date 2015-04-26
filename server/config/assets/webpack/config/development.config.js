@@ -10,7 +10,7 @@ module.exports = assign({}, require('./webpack.config.js'), {
     filename: '[name].development.js'
   },
   plugins: [
-    new OccurenceOrderPlugin(true),
-    new ExtractTextPlugin('[name].development.css')
+    new ExtractTextPlugin('[name].development.css'),
+    new OccurenceOrderPlugin(true)
   ]
 })

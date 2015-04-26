@@ -1,7 +1,6 @@
 const React = require('react')
 
 const BookDetail = require('./book-detail')
-const BooksList = require('./books-list')
 const BooksStore = require('./books-store')
 
 class BooksShow extends React.Component {
