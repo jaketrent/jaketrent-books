@@ -4,6 +4,9 @@ const {RouteHandler} = require('react-router')
 const BooksActions = require('../books/books-actions')
 const BooksList = require('./books-list')
 const BooksStore = require('./books-store')
+const Logo = require('../common/logo.js')
+
+try { require('./index.scss') } catch (e) {}
 
 class BooksIndex extends React.Component {
 
@@ -44,11 +47,22 @@ class BooksIndex extends React.Component {
     return !this.state.books || this.state.books.length < 1
   }
 
+  isRoutingToABook() {
+    return !!this.props.id
+  }
+
+  renderDetail() {
+    if (this.isRoutingToABook())
+      return <RouteHandler {...this.props} />
+    else
+      return <Logo />
+  }
+
   renderPage() {
     return (
       <div>
         <BooksList books={this.state.books} showLoadMore={this.state.hasMoreBooks} />
-        <RouteHandler {...this.props} />
+        {this.renderDetail()}
       </div>
     )
   }

@@ -13,7 +13,7 @@ module.exports = {
       { test: /\.js$/, loader: 'jsx-loader?harmony!babel-loader?stage=0', exclude: /node_modules/ },
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.scss/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader?browsers=last 2 version!sass-loader') },
-      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' }
+      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=20000' }
     ]
   },
   resolve: {
