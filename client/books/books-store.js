@@ -1,16 +1,14 @@
-'use strict'
+const assign = require('react/lib/Object.assign')
+const EventEmitter = require('events').EventEmitter
+const find = require('lodash-node/modern/collections/find')
+const findIndex = require('lodash-node/modern/arrays/findIndex')
+const uniq = require('lodash-node/modern/arrays/uniq')
 
-var assign = require('react/lib/Object.assign')
-var EventEmitter = require('events').EventEmitter
-var find = require('lodash-node/modern/collections/find')
-var findIndex = require('lodash-node/modern/arrays/findIndex')
-var uniq = require('lodash-node/modern/arrays/uniq')
+const AppConstants = require('../common/app-constants')
+const AppDispatcher = require('../common/app-dispatcher')
+const BooksConstants = require('./books-constants')
 
-var AppConstants = require('../common/app-constants')
-var AppDispatcher = require('../common/app-dispatcher')
-var BooksConstants = require('./books-constants')
-
-var ActionTypes = BooksConstants.ActionTypes
+const ActionTypes = BooksConstants.ActionTypes
 
 var _books = []
 var _latestLinkHeader
@@ -39,11 +37,6 @@ function uncache(book) {
     return b.book.id == book.id
   })
   _books.splice(indx, 1)
-}
-
-function getLastPage() {
-  if (_latestLinkHeader && _latestLinkHeader.last)
-    return _latestLinkHeader.last.page
 }
 
 var BooksStore = assign({}, EventEmitter.prototype, {
