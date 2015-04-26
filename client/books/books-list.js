@@ -36,7 +36,7 @@ BooksList.propTypes = {
   books: React.PropTypes.array,
   showLoadMore: React.PropTypes.bool
 }
-BooksList.propTypes = {
+BooksList.defaultProps = {
   books: [],
   showLoadMore: true
 }
