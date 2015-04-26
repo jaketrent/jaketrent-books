@@ -9,7 +9,6 @@ module.exports = assign({}, require('./webpack.config.js'), {
     path: '/',
     filename: '[name].development.js'
   },
-  //  TODO: make more DRY - just filename, not all of plugin def
   plugins: [
     new OccurenceOrderPlugin(true),
     new ExtractTextPlugin('[name].development.css')
