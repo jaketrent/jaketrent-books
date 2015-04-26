@@ -1,35 +1,24 @@
+const React = require('react')
 
-var React = require('react')
-
-var BooksItem = require('./books-item')
-var LoadMoreItem = require('./load-more-item')
+const BooksItem = require('./books-item')
+const LoadMoreItem = require('./load-more-item')
 
 try { require('./books-list.scss') } catch (e) {}
 
-module.exports = React.createClass({
+class BooksList extends React.Component {
 
-  displayName: 'BooksList',
-
-  propTypes: {
-    books: React.PropTypes.array,
-    showLoadMore: React.PropTypes.bool
-  },
-
-  getDefaultProps() {
-    return {
-      books: [],
-      showLoadMore: true
-    }
-  },
+  constructor(props) {
+    super(props)
+  }
 
   renderItems() {
     return this.props.books.map((book, i) => <BooksItem key={`item-${i}`} book={book} />)
-  },
+  }
 
   renderLoadMore() {
     if (this.props.showLoadMore)
       return <LoadMoreItem />
-  },
+  }
 
   render() {
     return (
@@ -41,5 +30,16 @@ module.exports = React.createClass({
       </div>
     )
   }
+}
 
-})
+BooksList.propTypes = {
+  books: React.PropTypes.array,
+  showLoadMore: React.PropTypes.bool
+}
+BooksList.propTypes = {
+  books: [],
+  showLoadMore: true
+}
+
+
+module.exports = BooksList

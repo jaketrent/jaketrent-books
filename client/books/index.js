@@ -5,48 +5,44 @@ const BooksActions = require('../books/books-actions')
 const BooksList = require('./books-list')
 const BooksStore = require('./books-store')
 
-module.exports = React.createClass({
+class BooksIndex extends React.Component {
 
-  displayName: 'BooksIndex',
-
-  propTypes: {
-    books: React.PropTypes.array
-  },
-
-  getInitialState() {
-    return this.getStateFromStores()
-  },
+  constructor(props) {
+    super(props)
+    this.state = this.getStateFromStores()
+    this._onChange = this._onChange.bind(this)
+  }
 
   getStateFromStores() {
     return {
       books: BooksStore.find(),
       hasMoreBooks: BooksStore.hasNextPage()
     }
-  },
+  }
 
   componentWillMount() {
     if (this.props.books) {
       this.setState({ books: this.props.books })
     }
-  },
+  }
 
   componentDidMount() {
     if (!this.props.books)
       BooksActions.fetch()
     BooksStore.addChangeListener(this._onChange)
-  },
+  }
 
   componentWillUnmount() {
     BooksStore.removeChangeListener(this._onChange)
-  },
+  }
 
-  _onChange: function() {
+  _onChange() {
     this.setState(this.getStateFromStores())
-  },
+  }
 
   isLoading() {
     return !this.state.books || this.state.books.length < 1
-  },
+  }
 
   renderPage() {
     return (
@@ -55,10 +51,16 @@ module.exports = React.createClass({
         <RouteHandler {...this.props} />
       </div>
     )
-  },
+  }
 
   render() {
     return this.renderPage()
   }
 
-})
+}
+
+BooksIndex.propTypes = {
+  books: React.PropTypes.array
+}
+
+module.exports = BooksIndex

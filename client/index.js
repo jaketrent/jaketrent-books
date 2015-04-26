@@ -10,7 +10,7 @@ require('./app/styles/index.scss')
 stores.initFromServer()
 
 Router.run(routes, Router.HistoryLocation, (Handler, state) => {
-  React.render(<Handler />, document.getElementById('app'), () => {
+  React.render(<Handler {...state.params}/>, document.getElementById('app'), () => {
     BooksActions.transition(state.params)
   })
 })

@@ -1,16 +1,14 @@
-var React = require('react')
+const React = require('react')
 
-var FormattedDate = require('../common/formatted-date')
+const FormattedDate = require('../common/formatted-date')
 
 try { require('./book-detail.scss') } catch (e) {}
 
-module.exports = React.createClass({
+class BookDetail extends React.Component {
 
-  displayName: 'BookDetail',
-
-  propTypes: {
-    book: React.PropTypes.object.isRequired
-  },
+  constructor(props) {
+    super(props)
+  }
 
   renderTitle() {
     if (this.props.book.affiliate_url)
@@ -23,7 +21,7 @@ module.exports = React.createClass({
       return (
         <h1 className="book-detail-title">{this.props.book.title}</h1>
       )
-  },
+  }
 
   renderReview() {
     if (this.props.book.review_url)
@@ -32,7 +30,7 @@ module.exports = React.createClass({
           My Review
         </a>
       )
-  },
+  }
 
   render() {
     return (
@@ -62,6 +60,9 @@ module.exports = React.createClass({
       </article>
     )
   }
+}
+BookDetail.propTypes = {
+  book: React.PropTypes.object.isRequired
+}
 
-})
-
+module.exports = BookDetail

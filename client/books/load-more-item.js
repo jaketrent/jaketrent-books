@@ -1,17 +1,14 @@
-
-var React = require('react')
+const React = require('react')
 
 const BooksActions = require('./books-actions')
 
 try { require('./load-more-item.scss') } catch (e) {}
 
-module.exports = React.createClass({
-
-  displayName: 'LoadMoreItem',
+class LoadMoreItem extends React.Component {
 
   handleClickButton(evt) {
     BooksActions.fetch()
-  },
+  }
 
   render() {
     return (
@@ -25,4 +22,6 @@ module.exports = React.createClass({
     )
   }
 
-})
+}
+
+module.exports = LoadMoreItem

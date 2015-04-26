@@ -13,11 +13,11 @@ function ensureFindable(filter) {
     BooksApi.fetch(null, filter)
 }
 
-exports.fetch = function (filter) {
+exports.fetch = (filter) => {
   BooksApi.fetch(BooksStore.getUrl(), filter, BooksStore.getPage())
 }
 
-exports.fetchSuccess = function (models, filter, page, linkHeader) {
+exports.fetchSuccess = (models, filter, page, linkHeader) => {
   AppDispatcher.handleServerAction({
     type: ActionTypes.FETCH_SUCCESS,
     models: models,
@@ -27,14 +27,14 @@ exports.fetchSuccess = function (models, filter, page, linkHeader) {
   })
 }
 
-exports.fetchError = function (errors) {
+exports.fetchError = (errors) => {
   AppDispatcher.handleServerAction({
     type: ActionTypes.FETCH_ERROR,
     errors: errors
   })
 }
 
-exports.transition = function (filter) {
+exports.transition = (filter) => {
   ensureFindable(filter)
   AppDispatcher.handleViewAction({
     type: ActionTypes.TRANSITION

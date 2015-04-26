@@ -1,18 +1,9 @@
-
-var {Link} = require('react-router')
-var React = require('react')
+const {Link} = require('react-router')
+const React = require('react')
 
 try { require('./books-item.scss') } catch (e) {}
 
-module.exports = React.createClass({
-
-  displayName: 'BooksItem',
-
-  getDefaultProps() {
-    return {
-      book: {}
-    }
-  },
+class BooksItem extends React.Component {
 
   render() {
     return (
@@ -24,4 +15,10 @@ module.exports = React.createClass({
     )
   }
 
-})
+}
+
+BooksItem.defaultProps = {
+  book: {}
+}
+
+module.exports = BooksItem

@@ -4,45 +4,38 @@ const BookDetail = require('./book-detail')
 const BooksList = require('./books-list')
 const BooksStore = require('./books-store')
 
-module.exports = React.createClass({
+class BooksShow extends React.Component {
 
-  displayName: 'BooksShow',
-
-  contextTypes: {
-    router: React.PropTypes.func
-  },
-
-  propTypes: {
-    books: React.PropTypes.array
-  },
-
-  getInitialState() {
-    return this.getStateFromStores()
-  },
+  constructor(props) {
+    super(props)
+    this.state = this.getStateFromStores()
+    this._onChange = this._onChange.bind(this)
+  }
 
   getStateFromStores() {
     return {
-      book: BooksStore.find({ id: this.context.router.getCurrentParams().id })
+      // `id` prop from router params -- used instead of context.router in es6-style class
+      book: BooksStore.find({ id: this.props.id })
     }
-  },
+  }
 
   componentWillMount() {
     if (Array.isArray(this.props.books) && this.props.books.length > 0) {
       this.setState({ book: this.props.books[0] })
     }
-  },
+  }
 
   componentDidMount() {
     BooksStore.addChangeListener(this._onChange)
-  },
+  }
 
   componentWillUnmount() {
     BooksStore.removeChangeListener(this._onChange)
-  },
+  }
 
-  _onChange: function() {
+  _onChange() {
     this.setState(this.getStateFromStores())
-  },
+  }
 
   render() {
     return (
@@ -50,4 +43,10 @@ module.exports = React.createClass({
     )
   }
 
-})
+}
+
+BooksShow.propTypes = {
+  books: React.PropTypes.array
+}
+
+module.exports = BooksShow
