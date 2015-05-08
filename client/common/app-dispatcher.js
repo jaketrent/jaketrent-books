@@ -1,5 +1,3 @@
-'use strict'
-
 var assign = require('react/lib/Object.assign')
 var Dispatcher = require('flux').Dispatcher
 
