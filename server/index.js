@@ -14,10 +14,9 @@ var port = process.env.PORT || 3000
 var app = express()
 
 views.init(app)
+assets.init(app)
 routes.map(app)
 
-assets.init(app, function () {
-  app.listen(port, function () {
-    console.log('Server listening on ' + port + '...')
-  })
+app.listen(port, function () {
+  console.log('Server listening on ' + port + '...')
 })

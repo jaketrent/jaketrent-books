@@ -17,10 +17,10 @@ function anArray(data) {
   return []
 }
 
-exports.isFileExists = (key, done) => {
+exports.isFileExists = (fileName, done) => {
   var params = {
     Bucket: BUCKET_NAME,
-    Key: key
+    Key: fileName
   };
   s3.headObject(params, (err) => {
     if (err) return done(err)
@@ -29,14 +29,14 @@ exports.isFileExists = (key, done) => {
   });
 }
 
-exports.upload = (key, path, done) => {
+exports.upload = (fileName, path, done) => {
   console.log(`Uploading asset ${path} ...`)
   var params = {
     Bucket: BUCKET_NAME,
-    Key: key,
+    Key: fileName,
     ACL: 'public-read',
     Body: getStream(path),
-    ContentType: mime.lookup(key)
+    ContentType: mime.lookup(fileName)
   }
   s3.upload(params, done)
 }
@@ -53,14 +53,14 @@ exports.uploadIfNew = (assets, done) => {
   }
 
   assets.forEach((asset) => {
-    exports.isFileExists(asset.key, (accessErr, exists) => {
+    exports.isFileExists(asset.fileName, (accessErr, exists) => {
       // skip accessErr check -- if err, then 404 (doesn't exist)
 
       if (!!exists) {
         console.log(`Asset already exists on s3 ${asset.path} -- Skipping.`)
         doneMaybe()
       } else {
-        exports.upload(asset.key, asset.path, doneMaybe)
+        exports.upload(asset.fileName, asset.path, doneMaybe)
       }
     })
   })

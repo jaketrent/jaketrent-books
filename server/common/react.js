@@ -13,8 +13,8 @@ exports.render = function (req, res, props) {
     var html = React.renderToString(<Handler {...props} />)
     return res.render('index', {
       html,
-      cssUrl: assets.getCssUrl(),
-      entryScriptUrl: assets.getEntryScriptUrl(),
+      cssUrl: assets.path('main.css'),
+      jsUrl: assets.path('main.js'),
       initialState: JSON.stringify(props)
     })
   })
