@@ -13,7 +13,7 @@ webpack.compile(function (err, webpackStats) {
     throw err
   }
 
-  upload(manifest, WEBPACK_OUT_DIR, function () {
+  upload(manifest.loadSync(), WEBPACK_OUT_DIR, function () {
     console.log('Asset upload complete.')
   })
 })

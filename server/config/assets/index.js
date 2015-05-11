@@ -6,7 +6,7 @@ var assetHost = process.env.ASSET_HOST || `http://localhost:${port}/assets`
 var isProd = process.env.NODE_ENV === 'production'
 
 function assetPath(assetKey) {
-  var fileName = isProd ? manifest[assetKey] : assetKey
+  var fileName = isProd ? manifest.at(assetKey) : assetKey
   return assetHost + '/' + fileName
 }
 

@@ -1,16 +1,30 @@
+var clone = require('lodash/lang/clone')
 var fs = require('fs');
 var path = require('path');
 var webpackConfig = require('../../../webpack.config')
 
 var _assetsManifest
 
-loadManifest()
+loadSync()
 
-function loadManifest() {
-  var manifestPath = 'dist/manifest.json' // TODO: put in config
-  _assetsManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
-  // TODO: handle dev mode with in-memory stuff
-  return _assetsManifest
+function mapAt(key) {
+  return clone(_assetsManifest[key])
 }
 
-module.exports = _assetsManifest
+function getMap() {
+  return clone(_assetsManifest)
+}
+
+function loadSync() {
+  var manifestPath = 'dist/manifest.json' // TODO: put in config
+  try {
+    _assetsManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+  } catch (e) {
+    console.log(`Error opening ${manifestPath}`, e)
+  }
+  return getMap()
+}
+
+exports.at = mapAt
+exports.get = getMap
+exports.loadSync = loadSync
