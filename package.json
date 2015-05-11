@@ -4,6 +4,7 @@
   "description": "Books site for Jake",
   "main": "server/index.js",
   "scripts": {
+    "build": "node build",
     "start": "node-dev server"
   },
   "engines": {
