@@ -1,8 +1,8 @@
 const assign = require('react/lib/Object.assign')
 const EventEmitter = require('events').EventEmitter
-const find = require('lodash-node/modern/collections/find')
-const findIndex = require('lodash-node/modern/arrays/findIndex')
-const uniq = require('lodash-node/modern/arrays/uniq')
+const find = require('lodash/collection/find')
+const findIndex = require('lodash/array/findIndex')
+const uniq = require('lodash/array/uniq')
 
 const AppConstants = require('../common/app-constants')
 const AppDispatcher = require('../common/app-dispatcher')
